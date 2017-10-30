@@ -75,18 +75,30 @@ public class Room
     public Room getExit(String direction)
     {
         if (direction.equals("north"))
+        {
             return northExit;
+        }
         if (direction.equals("east"))
+        {
             return eastExit;
+        }
         if (direction.equals("south"))
+        {
             return southExit;
+        }
         if (direction.equals("west"))
+        {
             return westExit;
+        }
         if (direction.equals("up"))
+        {
             return upExit;
+        }
         if (direction.equals("down"))
+        {
             return downExit;
-        
+        }
+
         return null;
     }
 
@@ -96,6 +108,36 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+
+    public String getExitString()
+    {
+        String returnstring = "";
+        if (this.getExit("north") != null)
+        {
+            returnstring += "north ";
+        }
+        if (this.getExit("east") != null)
+        {
+            returnstring += "east ";
+        }
+        if (this.getExit("south") != null)
+        {
+            returnstring += "south ";
+        }
+        if (this.getExit("west") != null)
+        {
+            returnstring += "west ";
+        }
+        if (this.getExit("up") != null)
+        {
+            returnstring += "up ";
+        }
+        if (this.getExit("down") != null)
+        {
+            returnstring += "down ";
+        }
+        return returnstring;
     }
 
 }
