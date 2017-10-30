@@ -36,7 +36,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, cellar, basement;
 
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -44,13 +44,17 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        cellar = new Room("in the cellar");
+        basement = new Room("in the basement");
 
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        outside.setExits(null, theater, lab, pub, cellar , null);
+        theater.setExits(null, null, null, outside, null, null);
+        pub.setExits(null, outside, null, null, null, basement);
+        lab.setExits(outside, office, null, null, null, null);
+        office.setExits(null, null, null, lab, null, null);
+        cellar.setExits(null, null, null, null, null, outside);
+        basement.setExits(null, null, null, null, pub, null);
 
         currentRoom = outside;  // start game outside
     }
@@ -83,7 +87,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        printLocation();
+        printLocationInfo();
     }
 
     /**
@@ -171,7 +175,7 @@ public class Game
         } else
         {
             currentRoom = nextRoom;
-            printLocation();
+            printLocationInfo();
         }
     }
 
@@ -193,7 +197,7 @@ public class Game
         }
     }
 
-    private void printLocation()
+    private void printLocationInfo()
     {
         System.out.println("You are " + currentRoom.getDescription());
         System.out.print("Exits: ");
@@ -212,6 +216,14 @@ public class Game
         if (currentRoom.westExit != null)
         {
             System.out.print("west ");
+        }
+        if (currentRoom.upExit != null)
+        {
+            System.out.print("up ");
+        }
+        if (currentRoom.downExit != null)
+        {
+            System.out.print("down ");
         }
         System.out.println();
     }
