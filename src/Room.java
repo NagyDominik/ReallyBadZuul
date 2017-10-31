@@ -1,4 +1,7 @@
 
+import java.util.HashMap;
+
+
 /**
  * Class Room - a room in an adventure game.
  *
@@ -17,12 +20,7 @@ public class Room
 {
 
     private String description;
-    private Room northExit;
-    private Room southExit;
-    private Room eastExit;
-    private Room westExit;
-    private Room downExit;
-    private Room upExit;
+    private HashMap<String, Room> exits = new HashMap();
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -48,27 +46,27 @@ public class Room
     {
         if (north != null)
         {
-            northExit = north;
+            exits.put("north", north);
         }
         if (east != null)
         {
-            eastExit = east;
+            exits.put("east", east);
         }
         if (south != null)
         {
-            southExit = south;
+            exits.put("south", south);
         }
         if (west != null)
         {
-            westExit = west;
+            exits.put("west", west);
         }
         if (up != null)
         {
-            upExit = up;
+            exits.put("up", up);
         }
         if (down != null)
         {
-            downExit = down;
+            exits.put("down", down);
         }
     }
 
@@ -76,27 +74,27 @@ public class Room
     {
         if (direction.equals("north"))
         {
-            return northExit;
+            return exits.get(direction);
         }
         if (direction.equals("east"))
         {
-            return eastExit;
+            return exits.get(direction);
         }
         if (direction.equals("south"))
         {
-            return southExit;
+            return exits.get(direction);
         }
         if (direction.equals("west"))
         {
-            return westExit;
+            return exits.get(direction);
         }
         if (direction.equals("up"))
         {
-            return upExit;
+            return exits.get(direction);
         }
         if (direction.equals("down"))
         {
-            return downExit;
+            return exits.get(direction);
         }
 
         return null;
