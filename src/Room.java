@@ -1,5 +1,6 @@
 
 import java.util.HashMap;
+import java.util.Set;
 
 
 /**
@@ -42,62 +43,14 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down)
+    public void setExits(String direction, Room neighbor)
     {
-        if (north != null)
-        {
-            exits.put("north", north);
-        }
-        if (east != null)
-        {
-            exits.put("east", east);
-        }
-        if (south != null)
-        {
-            exits.put("south", south);
-        }
-        if (west != null)
-        {
-            exits.put("west", west);
-        }
-        if (up != null)
-        {
-            exits.put("up", up);
-        }
-        if (down != null)
-        {
-            exits.put("down", down);
-        }
+        exits.put(direction, neighbor);
     }
 
     public Room getExit(String direction)
     {
-        if (direction.equals("north"))
-        {
-            return exits.get(direction);
-        }
-        if (direction.equals("east"))
-        {
-            return exits.get(direction);
-        }
-        if (direction.equals("south"))
-        {
-            return exits.get(direction);
-        }
-        if (direction.equals("west"))
-        {
-            return exits.get(direction);
-        }
-        if (direction.equals("up"))
-        {
-            return exits.get(direction);
-        }
-        if (direction.equals("down"))
-        {
-            return exits.get(direction);
-        }
-
-        return null;
+        return exits.get(direction);
     }
 
     /**
@@ -110,30 +63,11 @@ public class Room
 
     public String getExitString()
     {
-        String returnstring = "";
-        if (this.getExit("north") != null)
+        String returnstring = "Exits:";
+        Set<String> keys = exits.keySet();
+        for (String exit : keys)
         {
-            returnstring += "north ";
-        }
-        if (this.getExit("east") != null)
-        {
-            returnstring += "east ";
-        }
-        if (this.getExit("south") != null)
-        {
-            returnstring += "south ";
-        }
-        if (this.getExit("west") != null)
-        {
-            returnstring += "west ";
-        }
-        if (this.getExit("up") != null)
-        {
-            returnstring += "up ";
-        }
-        if (this.getExit("down") != null)
-        {
-            returnstring += "down ";
+            returnstring += " " + exit;
         }
         return returnstring;
     }
